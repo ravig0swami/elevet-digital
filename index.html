@@ -1,17 +1,969 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio of Ravi Goswami - Full Stack Developer and BCA student specializing in React, Node.js, Express, MongoDB, and Tailwind CSS." />
-    <title>Ravi Goswami</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-white text-black antialiased transition-colors duration-300 font-outfit">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elevate Digital — Premium Digital Marketing Agency</title>
+  <meta name="description" content="Elevate Digital is a premium digital marketing agency driving transformative growth through data-driven SEO, paid media, social strategy, and conversion optimization." />
+  <meta name="keywords" content="digital marketing agency, SEO, paid ads, social media marketing, content strategy, lead generation" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" aria-label="Elevate Digital Home">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Elevate<span class="logo-accent">Digital</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#case-studies">Work</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact" class="nav-cta">Get Started</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="hero-particles" id="particles"></div>
+      <div class="hero-gradient-orb orb-1"></div>
+      <div class="hero-gradient-orb orb-2"></div>
+      <div class="hero-gradient-orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge animate-fade-up" style="animation-delay:0.1s">
+        <span class="badge-dot"></span>
+        <span>Award-Winning Agency · 2024 Digital Excellence</span>
+      </div>
+      <h1 class="hero-title animate-fade-up" style="animation-delay:0.2s">
+        We <span class="gradient-text">Elevate</span> Brands<br/>
+        Into <span class="gradient-text">Market Leaders</span>
+      </h1>
+      <p class="hero-subtitle animate-fade-up" style="animation-delay:0.35s">
+        Data-driven digital marketing strategies that transform ambitious brands into 
+        dominant market forces. From SEO to paid media — we engineer your growth.
+      </p>
+      <div class="hero-cta-group animate-fade-up" style="animation-delay:0.5s">
+        <a href="#contact" class="btn btn-primary" id="hero-cta-primary">
+          <span>Launch Your Growth</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#case-studies" class="btn btn-ghost" id="hero-cta-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <span>View Our Work</span>
+        </a>
+      </div>
+      <div class="hero-stats animate-fade-up" style="animation-delay:0.65s">
+        <div class="stat-item">
+          <span class="stat-number" data-target="350">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Clients Served</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="840">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">Avg. ROI Generated</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="12">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Years of Excellence</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span>
+          <span class="stat-label">Client Retention</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TRUSTED BY BRANDS MARQUEE
+  ═══════════════════════════════════════════ -->
+  <section class="marquee-section">
+    <p class="marquee-label">Trusted by industry leaders</p>
+    <div class="marquee-track">
+      <div class="marquee-inner">
+        <span>Nexus Corp</span><span>·</span>
+        <span>Veritas Health</span><span>·</span>
+        <span>ArcLight Studios</span><span>·</span>
+        <span>Quantum Retail</span><span>·</span>
+        <span>Summit Finance</span><span>·</span>
+        <span>VeloCiti Tech</span><span>·</span>
+        <span>ClearView Media</span><span>·</span>
+        <span>Orion Hospitality</span><span>·</span>
+        <span>BlueWave SaaS</span><span>·</span>
+        <span>Pinnacle Foods</span><span>·</span>
+        <span>Nexus Corp</span><span>·</span>
+        <span>Veritas Health</span><span>·</span>
+        <span>ArcLight Studios</span><span>·</span>
+        <span>Quantum Retail</span><span>·</span>
+        <span>Summit Finance</span><span>·</span>
+        <span>VeloCiti Tech</span><span>·</span>
+        <span>ClearView Media</span><span>·</span>
+        <span>Orion Hospitality</span><span>·</span>
+        <span>BlueWave SaaS</span><span>·</span>
+        <span>Pinnacle Foods</span><span>·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-img-wrapper">
+            <img src="about_visual.png" alt="Digital growth analytics visualization" class="about-img" />
+            <div class="about-img-overlay"></div>
+          </div>
+          <div class="about-floating-card card-1">
+            <div class="floating-icon">📈</div>
+            <div>
+              <div class="floating-value">+312%</div>
+              <div class="floating-label">Average Traffic Growth</div>
+            </div>
+          </div>
+          <div class="about-floating-card card-2">
+            <div class="floating-icon">🏆</div>
+            <div>
+              <div class="floating-value">47 Awards</div>
+              <div class="floating-label">Industry Recognition</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-content reveal-right">
+          <div class="section-tag">About Elevate Digital</div>
+          <h2 class="section-title">We Don't Just Market — <span class="gradient-text">We Architect Growth</span></h2>
+          <p class="section-desc">
+            Founded in 2012, Elevate Digital has been at the forefront of digital marketing innovation. 
+            We combine creative brilliance with analytical precision to deliver strategies that don't just 
+            meet your targets — they obliterate them.
+          </p>
+          <p class="section-desc">
+            Our team of 80+ specialists across SEO, paid media, content, social, and CRO work as an 
+            extension of your brand — relentlessly focused on one goal: your exponential growth.
+          </p>
+          <div class="about-pillars">
+            <div class="pillar">
+              <div class="pillar-icon">🎯</div>
+              <div>
+                <h4>Data-First Strategy</h4>
+                <p>Every decision backed by deep analytics and real-time insights</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">⚡</div>
+              <div>
+                <h4>Agile Execution</h4>
+                <p>Rapid iteration and optimization across all channels simultaneously</p>
+              </div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-icon">🔗</div>
+              <div>
+                <h4>Full-Funnel Focus</h4>
+                <p>From awareness to conversion to retention — we own the entire journey</p>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary" id="about-cta">
+            <span>Start Your Transformation</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="services" class="section services-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-title">Digital Marketing <span class="gradient-text">Services</span></h2>
+        <p class="section-subtitle">A full spectrum of digital marketing capabilities engineered to deliver measurable results at every stage of your growth journey.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card reveal-up" style="animation-delay:0.1s" id="service-seo">
+          <div class="service-icon-wrap">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+          </div>
+          <h3>SEO & Organic Growth</h3>
+          <p>Technical SEO, content strategy, and link authority building that drives sustainable top-of-funnel traffic and dominates search rankings.</p>
+          <ul class="service-list">
+            <li>Technical SEO Audits</li>
+            <li>Content Gap Analysis</li>
+            <li>Authority Link Building</li>
+            <li>Local & International SEO</li>
+          </ul>
+          <div class="service-metric">Avg. +287% organic traffic in 6 months</div>
+        </div>
+
+        <div class="service-card reveal-up" style="animation-delay:0.2s" id="service-ppc">
+          <div class="service-icon-wrap">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Paid Media & PPC</h3>
+          <p>Precision-targeted Google, Meta, LinkedIn and programmatic ad campaigns that maximize ROAS and minimize cost per acquisition.</p>
+          <ul class="service-list">
+            <li>Google & YouTube Ads</li>
+            <li>Meta & Instagram Ads</li>
+            <li>LinkedIn B2B Campaigns</li>
+            <li>Programmatic Display</li>
+          </ul>
+          <div class="service-metric">Average 6.2x ROAS across accounts</div>
+        </div>
+
+        <div class="service-card reveal-up" style="animation-delay:0.3s" id="service-social">
+          <div class="service-icon-wrap">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Social Media Strategy</h3>
+          <p>Platform-native content strategies and community management that turn followers into brand evangelists and buyers.</p>
+          <ul class="service-list">
+            <li>Content Strategy & Creation</li>
+            <li>Community Management</li>
+            <li>Influencer Partnerships</li>
+            <li>Social Commerce</li>
+          </ul>
+          <div class="service-metric">3.4M+ impressions generated monthly</div>
+        </div>
+
+        <div class="service-card reveal-up" style="animation-delay:0.1s" id="service-content">
+          <div class="service-icon-wrap">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <h3>Content Marketing</h3>
+          <p>Thought leadership content, multimedia production, and distribution strategies that establish authority and drive qualified leads.</p>
+          <ul class="service-list">
+            <li>Blog & Long-Form Content</li>
+            <li>Video & Podcast Production</li>
+            <li>Whitepapers & eBooks</li>
+            <li>Content Distribution</li>
+          </ul>
+          <div class="service-metric">Content generates 65% of client leads</div>
+        </div>
+
+        <div class="service-card reveal-up" style="animation-delay:0.2s" id="service-email">
+          <div class="service-icon-wrap">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>Email & Marketing Automation</h3>
+          <p>Lifecycle email sequences, drip campaigns, and CRM automation that nurture leads and accelerate revenue velocity.</p>
+          <ul class="service-list">
+            <li>Lifecycle Email Sequences</li>
+            <li>HubSpot & Klaviyo Automation</li>
+            <li>Segmentation & Personalization</li>
+            <li>A/B Testing & Optimization</li>
+          </ul>
+          <div class="service-metric">Avg. 42% email open rate</div>
+        </div>
+
+        <div class="service-card reveal-up" style="animation-delay:0.3s" id="service-cro">
+          <div class="service-icon-wrap">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>CRO & Analytics</h3>
+          <p>Conversion rate optimization, landing page engineering, and deep-dive analytics that transform your existing traffic into revenue.</p>
+          <ul class="service-list">
+            <li>Landing Page Optimization</li>
+            <li>A/B & Multivariate Testing</li>
+            <li>GA4 & Attribution Modeling</li>
+            <li>UX & Heatmap Analysis</li>
+          </ul>
+          <div class="service-metric">Average +124% conversion uplift</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       INDUSTRIES SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="industries" class="section industries-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Industries We Serve</div>
+        <h2 class="section-title">Deep Expertise Across <span class="gradient-text">Every Sector</span></h2>
+        <p class="section-subtitle">We bring battle-tested, industry-specific strategies that speak the language of your market and your customers.</p>
+      </div>
+      <div class="industries-grid">
+        <div class="industry-card reveal-up" style="animation-delay:0.05s" id="industry-tech">
+          <div class="industry-icon">💻</div>
+          <h4>Technology & SaaS</h4>
+          <p>PLG strategies, product-led content, and B2B demand generation for tech companies scaling to enterprise.</p>
+          <div class="industry-tag">150+ Tech Clients</div>
+        </div>
+        <div class="industry-card reveal-up" style="animation-delay:0.1s" id="industry-ecom">
+          <div class="industry-icon">🛒</div>
+          <h4>E-Commerce & Retail</h4>
+          <p>Full-funnel acquisition, retention marketing, and marketplace strategies that drive sustainable DTC growth.</p>
+          <div class="industry-tag">$2.4B+ Revenue Generated</div>
+        </div>
+        <div class="industry-card reveal-up" style="animation-delay:0.15s" id="industry-health">
+          <div class="industry-icon">🏥</div>
+          <h4>Healthcare & Wellness</h4>
+          <p>HIPAA-compliant patient acquisition strategies, telehealth marketing, and wellness brand growth.</p>
+          <div class="industry-tag">80+ Healthcare Brands</div>
+        </div>
+        <div class="industry-card reveal-up" style="animation-delay:0.2s" id="industry-finance">
+          <div class="industry-icon">📊</div>
+          <h4>Finance & FinTech</h4>
+          <p>Compliant digital strategies for banks, fintechs, and financial services that convert high-value leads.</p>
+          <div class="industry-tag">$890M+ Assets Managed</div>
+        </div>
+        <div class="industry-card reveal-up" style="animation-delay:0.25s" id="industry-hospitality">
+          <div class="industry-icon">✈️</div>
+          <h4>Travel & Hospitality</h4>
+          <p>Destination marketing, direct booking optimization, and loyalty program strategies for hotels and travel brands.</p>
+          <div class="industry-tag">40+ Hotel Brands</div>
+        </div>
+        <div class="industry-card reveal-up" style="animation-delay:0.3s" id="industry-realestate">
+          <div class="industry-icon">🏢</div>
+          <h4>Real Estate & Property</h4>
+          <p>Lead gen, virtual tour marketing, and geo-targeted campaigns for developers, agents, and REITs.</p>
+          <div class="industry-tag">12,000+ Leads Monthly</div>
+        </div>
+        <div class="industry-card reveal-up" style="animation-delay:0.35s" id="industry-edu">
+          <div class="industry-icon">🎓</div>
+          <h4>Education & EdTech</h4>
+          <p>Enrollment marketing, course promotion, and brand-building for universities and online learning platforms.</p>
+          <div class="industry-tag">50+ EdTech Partners</div>
+        </div>
+        <div class="industry-card reveal-up" style="animation-delay:0.4s" id="industry-fmcg">
+          <div class="industry-icon">🌿</div>
+          <h4>FMCG & CPG</h4>
+          <p>Retail shelf strategy, D2C digital acceleration, and omni-channel marketing for consumer goods brands.</p>
+          <div class="industry-tag">30+ CPG Brands</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CLIENT SUCCESS STORIES
+  ═══════════════════════════════════════════ -->
+  <section id="testimonials" class="section testimonials-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Client Success Stories</div>
+        <h2 class="section-title">What Our Clients <span class="gradient-text">Say About Us</span></h2>
+        <p class="section-subtitle">Don't take our word for it — hear directly from the leaders whose businesses we've transformed.</p>
+      </div>
+      <div class="testimonials-carousel">
+        <div class="testimonials-track" id="testimonialsTrack">
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Elevate Digital completely transformed our organic search presence. Within 8 months we went from page 4 to ranking #1 for our primary keywords. Our inbound leads tripled and our CAC dropped by 60%. They're not just an agency — they're a growth partner.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #0ea5e9, #7c3aed)">JL</div>
+              <div>
+                <div class="author-name">James Lockwood</div>
+                <div class="author-role">CEO, VeloCiti Tech</div>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Our paid media ROAS went from 1.8x to 8.4x in just one quarter. The Elevate team rebuilt our entire Google Ads structure from scratch — new campaign architecture, creative testing, and audience segmentation. The results speak for themselves.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #10b981, #0ea5e9)">SR</div>
+              <div>
+                <div class="author-name">Sarah Reeves</div>
+                <div class="author-role">CMO, Quantum Retail</div>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">We needed a partner who understood the nuances of healthcare marketing. Elevate Digital not only delivered HIPAA-compliant campaigns but drove a 220% increase in qualified patient acquisition. They've become an indispensable part of our marketing team.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #f59e0b, #ef4444)">MP</div>
+              <div>
+                <div class="author-name">Dr. Maya Patel</div>
+                <div class="author-role">Marketing Director, Veritas Health</div>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">The content strategy Elevate built for us positioned our brand as the definitive thought leader in FinTech. Our LinkedIn engagement grew 14x, our email list tripled, and we closed 3 enterprise deals directly attributable to content they produced. Phenomenal ROI.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #8b5cf6, #ec4899)">DK</div>
+              <div>
+                <div class="author-name">David Kim</div>
+                <div class="author-role">Founder, Summit Finance</div>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">We launched a brand-new e-commerce store and Elevate Digital took us from zero to $2M in monthly revenue in under a year. Their performance marketing expertise combined with their creative team is a genuinely rare combination. Highly recommend.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar" style="background: linear-gradient(135deg, #06b6d4, #3b82f6)">AN</div>
+              <div>
+                <div class="author-name">Aisha Nwosu</div>
+                <div class="author-role">Founder, Pinnacle Foods Direct</div>
+              </div>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn prev-btn" id="prevBtn" aria-label="Previous testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn next-btn" id="nextBtn" aria-label="Next testimonial">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CASE STUDIES SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="case-studies" class="section case-studies-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Case Studies</div>
+        <h2 class="section-title">Results That <span class="gradient-text">Speak Loudly</span></h2>
+        <p class="section-subtitle">Deep-dive into how we've engineered transformative growth for brands just like yours.</p>
+      </div>
+      <div class="case-studies-grid">
+
+        <div class="case-card case-card-featured reveal-up" id="case-1">
+          <div class="case-img-wrap">
+            <img src="case_study_bg.png" alt="VeloCiti Tech SEO case study" class="case-img" />
+            <div class="case-overlay"></div>
+            <div class="case-badge">Featured</div>
+          </div>
+          <div class="case-content">
+            <div class="case-tag">SEO · Content Marketing</div>
+            <h3>How VeloCiti Tech Achieved 423% Organic Traffic Growth</h3>
+            <p>A complete SEO overhaul and content strategy that took a Series-A SaaS startup from obscurity to market category leader in 12 months.</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="metric-val">+423%</span>
+                <span class="metric-key">Organic Traffic</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-val">-61%</span>
+                <span class="metric-key">Cost Per Lead</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-val">3x</span>
+                <span class="metric-key">Qualified Leads</span>
+              </div>
+            </div>
+            <a href="#contact" class="case-link" id="case-link-1">Read Full Case Study →</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal-up" style="animation-delay:0.15s" id="case-2">
+          <div class="case-img-wrap">
+            <div class="case-img-placeholder" style="background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%)">
+              <div class="case-placeholder-icon">🛒</div>
+            </div>
+            <div class="case-overlay"></div>
+          </div>
+          <div class="case-content">
+            <div class="case-tag">Paid Media · CRO</div>
+            <h3>Quantum Retail: $0 to $2M/month in 9 Months</h3>
+            <p>Built and scaled a performance marketing engine for a new D2C brand achieving 8.4x ROAS through creative testing and precision targeting.</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="metric-val">8.4x</span>
+                <span class="metric-key">ROAS</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-val">$2M</span>
+                <span class="metric-key">Monthly Revenue</span>
+              </div>
+            </div>
+            <a href="#contact" class="case-link" id="case-link-2">Read Full Case Study →</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal-up" style="animation-delay:0.25s" id="case-3">
+          <div class="case-img-wrap">
+            <div class="case-img-placeholder" style="background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%)">
+              <div class="case-placeholder-icon">🏥</div>
+            </div>
+            <div class="case-overlay"></div>
+          </div>
+          <div class="case-content">
+            <div class="case-tag">Healthcare · Social Media</div>
+            <h3>Veritas Health: 220% Patient Acquisition Boost</h3>
+            <p>HIPAA-compliant social campaigns and local SEO that made Veritas the #1 telehealth provider in 3 metro markets.</p>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="metric-val">+220%</span>
+                <span class="metric-key">Patient Acquisition</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-val">#1</span>
+                <span class="metric-key">3 Markets</span>
+              </div>
+            </div>
+            <a href="#contact" class="case-link" id="case-link-3">Read Full Case Study →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TEAM SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="team" class="section team-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Our Team</div>
+        <h2 class="section-title">The Minds Behind <span class="gradient-text">Your Growth</span></h2>
+        <p class="section-subtitle">A team of seasoned strategists, creative visionaries, and analytical experts united by one mission — your exponential growth.</p>
+      </div>
+      <div class="team-grid">
+
+        <div class="team-card reveal-up" style="animation-delay:0.1s" id="team-maya">
+          <div class="team-img-wrap">
+            <img src="team_member_1.png" alt="Maya Chen - CEO & Founder" class="team-img" />
+            <div class="team-social-overlay">
+              <a href="#" class="team-social-btn" aria-label="LinkedIn">in</a>
+              <a href="#" class="team-social-btn" aria-label="Twitter">𝕏</a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h4 class="team-name">Maya Chen</h4>
+            <div class="team-role">CEO & Founder</div>
+            <p class="team-bio">15 years engineering growth for Fortune 500s and hypergrowth startups. Former CMO at Nexus Corp.</p>
+            <div class="team-specialties">
+              <span>Growth Strategy</span>
+              <span>Brand Building</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card reveal-up" style="animation-delay:0.2s" id="team-alex">
+          <div class="team-img-wrap">
+            <img src="team_member_2.png" alt="Alex Rivera - Director of Performance" class="team-img" />
+            <div class="team-social-overlay">
+              <a href="#" class="team-social-btn" aria-label="LinkedIn">in</a>
+              <a href="#" class="team-social-btn" aria-label="Twitter">𝕏</a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h4 class="team-name">Alex Rivera</h4>
+            <div class="team-role">Director of Performance</div>
+            <p class="team-bio">Ex-Google performance marketing lead. Managed $50M+ in paid media spend across global markets.</p>
+            <div class="team-specialties">
+              <span>Paid Media</span>
+              <span>ROAS Optimization</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card reveal-up" style="animation-delay:0.3s" id="team-priya">
+          <div class="team-img-wrap">
+            <div class="team-img-placeholder" style="background: linear-gradient(135deg, #7c3aed 30%, #c026d3)">
+              <span>PS</span>
+            </div>
+            <div class="team-social-overlay">
+              <a href="#" class="team-social-btn" aria-label="LinkedIn">in</a>
+              <a href="#" class="team-social-btn" aria-label="Twitter">𝕏</a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h4 class="team-name">Priya Sharma</h4>
+            <div class="team-role">Creative Director</div>
+            <p class="team-bio">Award-winning designer with a decade of brand narrative experience across media and tech industries.</p>
+            <div class="team-specialties">
+              <span>Brand Design</span>
+              <span>Content Strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card reveal-up" style="animation-delay:0.4s" id="team-jordan">
+          <div class="team-img-wrap">
+            <div class="team-img-placeholder" style="background: linear-gradient(135deg, #0891b2 30%, #0ea5e9)">
+              <span>JT</span>
+            </div>
+            <div class="team-social-overlay">
+              <a href="#" class="team-social-btn" aria-label="LinkedIn">in</a>
+              <a href="#" class="team-social-btn" aria-label="Twitter">𝕏</a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h4 class="team-name">Jordan Taylor</h4>
+            <div class="team-role">Head of SEO & Analytics</div>
+            <p class="team-bio">Technical SEO authority and data science expert. Built organic engines generating millions in pipeline.</p>
+            <div class="team-specialties">
+              <span>Technical SEO</span>
+              <span>Analytics</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRICING SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="pricing" class="section pricing-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Pricing Packages</div>
+        <h2 class="section-title">Transparent Pricing, <span class="gradient-text">Exceptional Value</span></h2>
+        <p class="section-subtitle">Flexible packages designed to scale with your ambition. All plans include dedicated account management and monthly reporting.</p>
+        <div class="pricing-toggle">
+          <button class="toggle-btn active" id="toggleMonthly">Monthly</button>
+          <button class="toggle-btn" id="toggleAnnual">Annual <span class="save-badge">Save 20%</span></button>
+        </div>
+      </div>
+      <div class="pricing-grid">
+
+        <div class="pricing-card reveal-up" style="animation-delay:0.1s" id="pricing-starter">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="2,500" data-annual="2,000">2,500</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="pricing-tagline">For ambitious startups ready to establish their digital presence.</p>
+          <ul class="pricing-features">
+            <li><span class="feat-check">✓</span> SEO Audit & Strategy</li>
+            <li><span class="feat-check">✓</span> 2 Content Pieces / Month</li>
+            <li><span class="feat-check">✓</span> Google Ads Management (up to $10K spend)</li>
+            <li><span class="feat-check">✓</span> Monthly Analytics Report</li>
+            <li><span class="feat-check">✓</span> Email Support</li>
+            <li class="feat-disabled"><span class="feat-cross">✗</span> Social Media Management</li>
+            <li class="feat-disabled"><span class="feat-cross">✗</span> CRO & Landing Page Testing</li>
+            <li class="feat-disabled"><span class="feat-cross">✗</span> Dedicated Strategist</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" id="pricing-starter-cta">Get Started</a>
+        </div>
+
+        <div class="pricing-card pricing-card-popular reveal-up" style="animation-delay:0.2s" id="pricing-growth">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-tier">Growth</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="6,500" data-annual="5,200">6,500</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="pricing-tagline">For scale-ups ready to dominate their category and accelerate growth.</p>
+          <ul class="pricing-features">
+            <li><span class="feat-check">✓</span> Full SEO Strategy & Execution</li>
+            <li><span class="feat-check">✓</span> 6 Content Pieces / Month</li>
+            <li><span class="feat-check">✓</span> Multi-Channel Paid Media (up to $50K)</li>
+            <li><span class="feat-check">✓</span> Social Media Management (3 Platforms)</li>
+            <li><span class="feat-check">✓</span> CRO & A/B Testing</li>
+            <li><span class="feat-check">✓</span> Bi-Weekly Strategy Calls</li>
+            <li><span class="feat-check">✓</span> Dedicated Strategist</li>
+            <li class="feat-disabled"><span class="feat-cross">✗</span> Custom Dashboard & BI</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" id="pricing-growth-cta">Start Growing</a>
+        </div>
+
+        <div class="pricing-card reveal-up" style="animation-delay:0.3s" id="pricing-enterprise">
+          <div class="pricing-tier">Enterprise</div>
+          <div class="pricing-price">
+            <span class="price-currency">$</span>
+            <span class="price-amount" data-monthly="15,000" data-annual="12,000">15,000</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <p class="pricing-tagline">Full-service marketing partnership for market leaders who demand the best.</p>
+          <ul class="pricing-features">
+            <li><span class="feat-check">✓</span> Complete Digital Marketing Suite</li>
+            <li><span class="feat-check">✓</span> Unlimited Content Production</li>
+            <li><span class="feat-check">✓</span> Unlimited Paid Media Budget</li>
+            <li><span class="feat-check">✓</span> All Social Platforms</li>
+            <li><span class="feat-check">✓</span> Advanced CRO Program</li>
+            <li><span class="feat-check">✓</span> Weekly Strategy Reviews</li>
+            <li><span class="feat-check">✓</span> Senior Dedicated Strategist</li>
+            <li><span class="feat-check">✓</span> Custom BI Dashboard</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" id="pricing-enterprise-cta">Contact Sales</a>
+        </div>
+
+      </div>
+      <p class="pricing-note">All plans require a 3-month minimum commitment. Custom packages available for agencies and enterprises. <a href="#contact" class="pricing-note-link">Talk to us →</a></p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <div class="section-tag">Get In Touch</div>
+          <h2 class="section-title">Let's Build Something <span class="gradient-text">Remarkable</span></h2>
+          <p class="section-desc">Ready to transform your digital presence? Fill out the form and a senior strategist will reach out within 24 hours with a custom growth audit.</p>
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="detail-label">Email Us</div>
+                <div class="detail-value">hello@elevatedigital.com</div>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.6 3.37 2 2 0 0 1 3.57 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.55 6.55l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="detail-label">Call Us</div>
+                <div class="detail-value">+1 (800) ELEVATE</div>
+              </div>
+            </div>
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="detail-label">Headquarters</div>
+                <div class="detail-value">150 Fifth Avenue, New York, NY 10011</div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-promise">
+            <div class="promise-icon">⚡</div>
+            <div>
+              <div class="promise-title">24-Hour Response Guarantee</div>
+              <div class="promise-text">A senior strategist will review your brief and respond with a custom growth audit within one business day.</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-wrap reveal-right">
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email *</label>
+              <input type="email" id="email" name="email" placeholder="john@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="company">Company *</label>
+              <input type="text" id="company" name="company" placeholder="Your Company Name" required />
+            </div>
+            <div class="form-group">
+              <label for="budget">Monthly Marketing Budget</label>
+              <select id="budget" name="budget">
+                <option value="" disabled selected>Select your budget range</option>
+                <option value="under-2k">Under $2,000/mo</option>
+                <option value="2k-5k">$2,000 – $5,000/mo</option>
+                <option value="5k-15k">$5,000 – $15,000/mo</option>
+                <option value="15k-50k">$15,000 – $50,000/mo</option>
+                <option value="50k-plus">$50,000+/mo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="services">Services Interested In</label>
+              <div class="services-checkboxes">
+                <label class="checkbox-label"><input type="checkbox" name="services" value="seo" id="check-seo" /> SEO</label>
+                <label class="checkbox-label"><input type="checkbox" name="services" value="ppc" id="check-ppc" /> Paid Media</label>
+                <label class="checkbox-label"><input type="checkbox" name="services" value="social" id="check-social" /> Social Media</label>
+                <label class="checkbox-label"><input type="checkbox" name="services" value="content" id="check-content" /> Content</label>
+                <label class="checkbox-label"><input type="checkbox" name="services" value="email" id="check-email" /> Email</label>
+                <label class="checkbox-label"><input type="checkbox" name="services" value="cro" id="check-cro" /> CRO</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell Us About Your Goals</label>
+              <textarea id="message" name="message" rows="4" placeholder="What are your current challenges? What growth targets are you working towards?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="contactSubmit">
+              <span class="btn-text">Send My Brief</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <div class="form-success" id="formSuccess">
+              <span>🎉</span>
+              <div>
+                <strong>Message sent!</strong> A senior strategist will reach out within 24 hours with your custom growth audit.
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       NEWSLETTER SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card reveal-up">
+        <div class="newsletter-glow"></div>
+        <div class="newsletter-content">
+          <div class="newsletter-icon">📬</div>
+          <h2>The Growth Intelligence <span class="gradient-text">Newsletter</span></h2>
+          <p>Join 28,000+ marketing leaders receiving our weekly digest of data-driven insights, platform updates, and growth strategies that move the needle.</p>
+          <form class="newsletter-form" id="newsletterForm" novalidate>
+            <div class="newsletter-input-wrap">
+              <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Enter your work email" required aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary" id="newsletterSubmit">
+                <span>Subscribe Free</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+            <div class="newsletter-success" id="newsletterSuccess">
+              🎉 You're subscribed! Welcome to the Growth Intelligence community.
+            </div>
+          </form>
+          <p class="newsletter-disclaimer">No spam. Unsubscribe anytime. Published every Tuesday.</p>
+          <div class="newsletter-social-proof">
+            <div class="proof-avatars">
+              <div class="proof-avatar" style="background: linear-gradient(135deg,#0ea5e9,#7c3aed)">JL</div>
+              <div class="proof-avatar" style="background: linear-gradient(135deg,#10b981,#0ea5e9)">SR</div>
+              <div class="proof-avatar" style="background: linear-gradient(135deg,#f59e0b,#ef4444)">MP</div>
+              <div class="proof-avatar" style="background: linear-gradient(135deg,#8b5cf6,#ec4899)">DK</div>
+              <div class="proof-avatar" style="background: linear-gradient(135deg,#06b6d4,#3b82f6)">+</div>
+            </div>
+            <span>28,000+ marketing leaders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#home" class="nav-logo footer-logo">
+              <span class="logo-icon">⬡</span>
+              <span class="logo-text">Elevate<span class="logo-accent">Digital</span></span>
+            </a>
+            <p class="footer-desc">A premium digital marketing agency engineering exponential growth for ambitious brands worldwide. Data-driven. Results-obsessed.</p>
+            <div class="footer-social">
+              <a href="#" class="social-link" id="social-linkedin" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="#" class="social-link" id="social-twitter" aria-label="Twitter/X">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="#" class="social-link" id="social-instagram" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="#" class="social-link" id="social-facebook" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" class="social-link" id="social-youtube" aria-label="YouTube">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0f0f0f"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links-col">
+            <h5>Services</h5>
+            <ul>
+              <li><a href="#services">SEO & Organic Growth</a></li>
+              <li><a href="#services">Paid Media & PPC</a></li>
+              <li><a href="#services">Social Media Strategy</a></li>
+              <li><a href="#services">Content Marketing</a></li>
+              <li><a href="#services">Email Automation</a></li>
+              <li><a href="#services">CRO & Analytics</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h5>Company</h5>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#team">Our Team</a></li>
+              <li><a href="#case-studies">Case Studies</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Press & Media</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h5>Resources</h5>
+            <ul>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Growth Guides</a></li>
+              <li><a href="#">Free Audit Tool</a></li>
+              <li><a href="#">Podcast</a></li>
+              <li><a href="#">Webinars</a></li>
+              <li><a href="#">Partner Program</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p>© 2024 Elevate Digital LLC. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>

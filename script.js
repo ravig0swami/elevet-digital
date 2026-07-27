@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
-   ELEVATE DIGITAL — JavaScript
-   Particles · Scroll effects · Carousel · Forms · Stats
+   ELEVATE DIGITAL — JavaScript v2
+   Premium interactions · Ripple · Parallax · Carousel · Forms
 ═══════════════════════════════════════════════════════ */
 
 "use strict";
@@ -25,8 +25,9 @@ window.addEventListener(
 );
 
 hamburger.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
   hamburger.classList.toggle("active");
-  navLinks.classList.toggle("open");
+  hamburger.setAttribute("aria-expanded", isOpen);
 });
 
 // Close nav on link click (mobile)
@@ -34,7 +35,18 @@ navLinks.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
     hamburger.classList.remove("active");
     navLinks.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
   });
+});
+
+// Close nav on Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navLinks.classList.contains("open")) {
+    hamburger.classList.remove("active");
+    navLinks.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.focus();
+  }
 });
 
 // Active link highlighting (exclude CTA button)
@@ -73,8 +85,8 @@ window.addEventListener(
   let W,
     H,
     particles = [];
-  const NUM_PARTICLES = 80;
-  const MAX_DIST = 140;
+  const NUM_PARTICLES = 70;
+  const MAX_DIST = 120;
 
   function resize() {
     W = canvas.width = container.offsetWidth;
@@ -89,10 +101,10 @@ window.addEventListener(
     return {
       x: randomBetween(0, W),
       y: randomBetween(0, H),
-      vx: randomBetween(-0.4, 0.4),
-      vy: randomBetween(-0.4, 0.4),
-      r: randomBetween(1, 2.5),
-      alpha: randomBetween(0.2, 0.7),
+      vx: randomBetween(-0.3, 0.3),
+      vy: randomBetween(-0.3, 0.3),
+      r: randomBetween(1, 2),
+      alpha: randomBetween(0.15, 0.55),
     };
   }
 
@@ -117,19 +129,18 @@ window.addEventListener(
       ctx.fill();
     });
 
-    // Draw lines between nearby particles
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < MAX_DIST) {
-          const alpha = (1 - dist / MAX_DIST) * 0.15;
+          const alpha = (1 - dist / MAX_DIST) * 0.12;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
-          ctx.lineWidth = 0.8;
+          ctx.lineWidth = 0.6;
           ctx.stroke();
         }
       }
@@ -141,18 +152,23 @@ window.addEventListener(
   resize();
   init();
   draw();
+
+  let resizeTimer;
   window.addEventListener(
     "resize",
     () => {
-      resize();
-      init();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        resize();
+        init();
+      }, 200);
     },
     { passive: true },
   );
 })();
 
 /* ─────────────────────────────────────────
-   3. SCROLL REVEAL ANIMATION
+   3. SCROLL REVEAL (STAGGERED)
 ───────────────────────────────────────── */
 (function initReveal() {
   const revealEls = document.querySelectorAll(
@@ -172,7 +188,7 @@ window.addEventListener(
         }
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
   );
 
   revealEls.forEach((el) => observer.observe(el));
@@ -195,7 +211,7 @@ window.addEventListener(
     counters.forEach((el) => {
       const raw = el.dataset.target;
       const target = parseInt(raw.replace(/,/g, ""), 10);
-      const duration = 2000;
+      const duration = 2200;
       const startTime = performance.now();
 
       function update(now) {
@@ -221,7 +237,7 @@ window.addEventListener(
 })();
 
 /* ─────────────────────────────────────────
-   5. TESTIMONIALS CAROUSEL
+   5. TESTIMONIALS CAROUSEL (AUTO-SLIDE)
 ───────────────────────────────────────── */
 (function initCarousel() {
   const track = document.getElementById("testimonialsTrack");
@@ -241,13 +257,24 @@ window.addEventListener(
     return 3;
   }
 
+  function getMaxIndex() {
+    return Math.max(0, total - getVisible());
+  }
+
   function buildDots() {
     dotsWrap.innerHTML = "";
-    const maxIndex = total - getVisible();
-    for (let i = 0; i <= Math.max(maxIndex, 0); i++) {
-      const dot = document.createElement("div");
+    const maxIdx = getMaxIndex();
+    for (let i = 0; i <= maxIdx; i++) {
+      const dot = document.createElement("button");
       dot.className = "dot" + (i === current ? " active" : "");
-      dot.addEventListener("click", () => goTo(i));
+      dot.setAttribute("role", "tab");
+      dot.setAttribute("aria-label", `Go to slide ${i + 1}`);
+      dot.setAttribute("aria-selected", i === current ? "true" : "false");
+      dot.setAttribute("tabindex", i === current ? "0" : "-1");
+      dot.addEventListener("click", () => {
+        goTo(i);
+        resetAuto();
+      });
       dotsWrap.appendChild(dot);
     }
   }
@@ -255,39 +282,59 @@ window.addEventListener(
   function updateDots() {
     dotsWrap.querySelectorAll(".dot").forEach((d, i) => {
       d.classList.toggle("active", i === current);
+      d.setAttribute("aria-selected", i === current ? "true" : "false");
+      d.setAttribute("tabindex", i === current ? "0" : "-1");
     });
   }
 
   function goTo(idx) {
-    const maxIndex = total - getVisible();
-    current = Math.max(0, Math.min(idx, maxIndex));
-    const cardWidth = cards[0].offsetWidth + 24; // gap 24px
-    track.style.transform = `translateX(-${current * cardWidth}px)`;
+    current = Math.max(0, Math.min(idx, getMaxIndex()));
+    const cardStyle = window.getComputedStyle(cards[0]);
+    const cardWidth = cards[0].offsetWidth;
+    const gap = parseInt(window.getComputedStyle(track).gap) || 24;
+    const offset = current * (cardWidth + gap);
+    track.style.transform = `translateX(-${offset}px)`;
     updateDots();
   }
 
   prevBtn.addEventListener("click", () => {
-    goTo(current - 1);
+    goTo(current > 0 ? current - 1 : getMaxIndex());
     resetAuto();
   });
   nextBtn.addEventListener("click", () => {
-    goTo(current + 1);
+    goTo(current < getMaxIndex() ? current + 1 : 0);
     resetAuto();
+  });
+
+  // Keyboard support for carousel
+  [prevBtn, nextBtn, dotsWrap].forEach((el) => {
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        goTo(current > 0 ? current - 1 : getMaxIndex());
+        resetAuto();
+      } else if (e.key === "ArrowRight") {
+        goTo(current < getMaxIndex() ? current + 1 : 0);
+        resetAuto();
+      }
+    });
   });
 
   function resetAuto() {
     clearInterval(autoTimer);
     autoTimer = setInterval(() => {
-      const maxIndex = total - getVisible();
-      goTo(current < maxIndex ? current + 1 : 0);
-    }, 5000);
+      goTo(current < getMaxIndex() ? current + 1 : 0);
+    }, 6000);
   }
 
+  let resizeTimer;
   window.addEventListener(
     "resize",
     () => {
-      goTo(current);
-      buildDots();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        goTo(current);
+        buildDots();
+      }, 150);
     },
     { passive: true },
   );
@@ -301,20 +348,45 @@ window.addEventListener(
 
   // Touch/swipe support
   let startX = null;
+  let startY = null;
+
   track.addEventListener(
     "touchstart",
     (e) => {
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
     },
     { passive: true },
   );
+
+  track.addEventListener(
+    "touchmove",
+    (e) => {
+      if (startX === null) return;
+      const dx = Math.abs(e.touches[0].clientX - startX);
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      // Prevent vertical scroll when swiping horizontally
+      if (dx > dy && dx > 10) {
+        e.preventDefault();
+      }
+    },
+    { passive: false },
+  );
+
   track.addEventListener("touchend", (e) => {
     if (startX === null) return;
     const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) diff > 0 ? goTo(current + 1) : goTo(current - 1);
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goTo(current + 1) : goTo(current - 1);
+    }
     startX = null;
+    startY = null;
     resetAuto();
   });
+
+  // Pause on hover
+  track.addEventListener("mouseenter", () => clearInterval(autoTimer));
+  track.addEventListener("mouseleave", resetAuto);
 })();
 
 /* ─────────────────────────────────────────
@@ -329,9 +401,18 @@ window.addEventListener(
   function setMode(mode) {
     monthlyBtn.classList.toggle("active", mode === "monthly");
     annualBtn.classList.toggle("active", mode === "annual");
+    monthlyBtn.setAttribute("aria-checked", mode === "monthly");
+    annualBtn.setAttribute("aria-checked", mode === "annual");
+
     amounts.forEach((el) => {
-      el.textContent =
-        mode === "monthly" ? el.dataset.monthly : el.dataset.annual;
+      const target = mode === "monthly" ? el.dataset.monthly : el.dataset.annual;
+      el.style.opacity = "0";
+      el.style.transform = "translateY(-4px)";
+      setTimeout(() => {
+        el.textContent = target;
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+      }, 150);
     });
   }
 
@@ -340,7 +421,7 @@ window.addEventListener(
 })();
 
 /* ─────────────────────────────────────────
-   7. CONTACT FORM
+   7. CONTACT FORM (IMPROVED VALIDATION)
 ───────────────────────────────────────── */
 (function initContactForm() {
   const form = document.getElementById("contactForm");
@@ -348,9 +429,8 @@ window.addEventListener(
   const submitBtn = document.getElementById("contactSubmit");
   if (!form) return;
 
-  // Required field validation
   function validateField(field) {
-    const label = field.previousElementSibling;
+    const group = field.closest(".form-group");
     let valid = true;
     let errorMsg = "";
 
@@ -365,13 +445,14 @@ window.addEventListener(
       }
     }
 
-    // Show/hide error styling
-    if (!valid) {
-      field.style.borderColor = "rgba(239, 68, 68, 0.5)";
-      field.style.boxShadow = "0 0 0 3px rgba(239, 68, 68, 0.1)";
-    } else {
-      field.style.borderColor = "";
-      field.style.boxShadow = "";
+    if (group) {
+      const errorEl = group.querySelector(".form-error-msg");
+      if (!valid) {
+        group.classList.add("error");
+        if (errorEl) errorEl.textContent = errorMsg;
+      } else {
+        group.classList.remove("error");
+      }
     }
 
     return valid;
@@ -397,17 +478,17 @@ window.addEventListener(
     }
 
     // Simulate loading
-    btnText.textContent = "Sending…";
+    btnText.textContent = "Sending\u2026";
     submitBtn.disabled = true;
 
     setTimeout(() => {
-      btnText.textContent = "✓ Sent!";
+      btnText.textContent = "\u2713 Sent!";
       success.classList.add("show");
       form.reset();
       // Reset field styling
       requiredFields.forEach((f) => {
-        f.style.borderColor = "";
-        f.style.boxShadow = "";
+        const group = f.closest(".form-group");
+        if (group) group.classList.remove("error");
       });
 
       setTimeout(() => {
@@ -418,13 +499,13 @@ window.addEventListener(
     }, 1500);
   });
 
-  // Validate on blur for better UX
+  // Validate on blur, clear on input
   form.querySelectorAll("[required]").forEach((field) => {
     field.addEventListener("blur", () => validateField(field));
     field.addEventListener("input", () => {
       if (field.value.trim()) {
-        field.style.borderColor = "";
-        field.style.boxShadow = "";
+        const group = field.closest(".form-group");
+        if (group) group.classList.remove("error");
       }
     });
   });
@@ -442,7 +523,7 @@ window.addEventListener(
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const span = btn.querySelector("span");
-    span.textContent = "Subscribing…";
+    span.textContent = "Subscribing\u2026";
     btn.disabled = true;
 
     setTimeout(() => {
@@ -464,7 +545,9 @@ window.addEventListener(
 ───────────────────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener("click", (e) => {
-    const target = document.querySelector(a.getAttribute("href"));
+    const href = a.getAttribute("href");
+    if (href === "#") return;
+    const target = document.querySelector(href);
     if (!target) return;
     e.preventDefault();
     const offset = 80;
@@ -473,23 +556,61 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 });
 
 /* ─────────────────────────────────────────
-   10. PARALLAX ORBS (subtle opacity shift to avoid overriding CSS animation)
+   10. PARALLAX ORBS (MOUSE + SCROLL)
 ───────────────────────────────────────── */
 (function initParallax() {
   const orbs = document.querySelectorAll(".hero-gradient-orb");
   if (!orbs.length) return;
+
+  // Scroll opacity fade
   window.addEventListener(
     "scroll",
     () => {
       const sy = window.scrollY;
       orbs.forEach((orb, i) => {
-        // Use opacity instead of transform to avoid breaking CSS orb-float animation
-        const speed = (i + 1) * 0.08;
-        orb.style.opacity = Math.max(0.4, 1 - sy * speed * 0.003);
+        const speed = (i + 1) * 0.06;
+        orb.style.opacity = Math.max(0.3, 1 - sy * speed * 0.003);
       });
     },
     { passive: true },
   );
+
+  // Mouse parallax (desktop only)
+  if (window.innerWidth >= 768) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let rafId = null;
+
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      },
+      { passive: true },
+    );
+
+    function animateOrbs() {
+      orbs.forEach((orb, i) => {
+        const speed = (i + 1) * 12;
+        const x = mouseX * speed;
+        const y = mouseY * speed;
+        orb.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      rafId = requestAnimationFrame(animateOrbs);
+    }
+    animateOrbs();
+
+    // Cleanup on leave
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      } else if (!document.hidden && !rafId) {
+        animateOrbs();
+      }
+    });
+  }
 })();
 
 /* ─────────────────────────────────────────
@@ -499,16 +620,17 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   if (window.innerWidth < 768) return;
 
   const glow = document.createElement("div");
+  glow.setAttribute("aria-hidden", "true");
   glow.style.cssText = `
     position: fixed;
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s linear;
+    transition: left 0.15s ease-out, top 0.15s ease-out;
   `;
   document.body.appendChild(glow);
 
@@ -529,37 +651,60 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   if (window.innerWidth < 768) return;
 
   const tiltCards = document.querySelectorAll(
-    ".service-card, .team-card, .pricing-card",
+    ".service-card, .team-card, .pricing-card, .industry-card",
   );
 
   tiltCards.forEach((card) => {
-    // Use CSS custom property approach to avoid overriding :hover transforms
-    card.style.setProperty("--tilt-x", "0deg");
-    card.style.setProperty("--tilt-y", "0deg");
-
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.setProperty("--tilt-x", `${-y * 5}deg`);
-      card.style.setProperty("--tilt-y", `${x * 5}deg`);
-      card.style.transform = `perspective(800px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-6px)`;
+      card.style.transform = `perspective(800px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-4px)`;
     });
     card.addEventListener("mouseleave", () => {
       card.style.transform = "";
-      card.style.setProperty("--tilt-x", "0deg");
-      card.style.setProperty("--tilt-y", "0deg");
     });
   });
 })();
 
 /* ─────────────────────────────────────────
-   13. PAGE LOAD POLISH
+   13. BUTTON RIPPLE EFFECT
+───────────────────────────────────────── */
+(function initRipple() {
+  document.querySelectorAll(".btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      btn.style.setProperty("--ripple-x", x + "%");
+      btn.style.setProperty("--ripple-y", y + "%");
+      btn.classList.remove("rippling");
+      // Force reflow
+      void btn.offsetWidth;
+      btn.classList.add("rippling");
+      setTimeout(() => btn.classList.remove("rippling"), 600);
+    });
+  });
+})();
+
+/* ─────────────────────────────────────────
+   14. PAGE LOAD POLISH
 ───────────────────────────────────────── */
 window.addEventListener("load", () => {
   document.body.style.opacity = "0";
-  document.body.style.transition = "opacity 0.5s ease";
+  document.body.style.transition = "opacity 0.6s ease";
   requestAnimationFrame(() => {
-    document.body.style.opacity = "1";
+    requestAnimationFrame(() => {
+      document.body.style.opacity = "1";
+    });
   });
 });
+
+/* ─────────────────────────────────────────
+   15. PRICE AMOUNT TRANSITIONS
+───────────────────────────────────────── */
+(function initPriceTransitions() {
+  document.querySelectorAll(".price-amount").forEach((el) => {
+    el.style.transition = "opacity 0.2s ease, transform 0.2s ease";
+  });
+})();

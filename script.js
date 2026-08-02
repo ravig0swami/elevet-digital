@@ -6,6 +6,48 @@
 "use strict";
 
 /* ─────────────────────────────────────────
+   0. REDUCED MOTION + SCROLL PROGRESS + BACK TO TOP
+───────────────────────────────────────── */
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
+
+const scrollProgress = document.getElementById("scrollProgress");
+const backToTop = document.getElementById("backToTop");
+
+if (scrollProgress) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = total > 0 ? (window.scrollY / total) * 100 : 0;
+      scrollProgress.style.width = progress + "%";
+    },
+    { passive: true },
+  );
+}
+
+if (backToTop) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      const show = window.scrollY > 600;
+      backToTop.classList.toggle("visible", show);
+      backToTop.setAttribute("aria-hidden", String(!show));
+      backToTop.setAttribute("tabindex", show ? "0" : "-1");
+    },
+    { passive: true },
+  );
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  });
+}
+
+/* ─────────────────────────────────────────
    1. NAVBAR SCROLL BEHAVIOUR
 ───────────────────────────────────────── */
 const navbar = document.getElementById("navbar");
@@ -76,6 +118,8 @@ window.addEventListener(
 (function initParticles() {
   const container = document.getElementById("particles");
   if (!container) return;
+  // Skip heavy canvas animation when user prefers reduced motion
+  if (prefersReducedMotion) return;
 
   const canvas = document.createElement("canvas");
   canvas.id = "particlesCanvas";
@@ -460,6 +504,13 @@ window.addEventListener(
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    // Honeypot: silently ignore bot submissions
+    const hp = form.querySelector(".hp-field input");
+    if (hp && hp.value.trim() !== "") {
+      return; // Pretend success so bots think they got through
+    }
+
     const btnText = submitBtn.querySelector(".btn-text");
 
     // Validate all required fields
@@ -551,7 +602,10 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     if (!target) return;
     e.preventDefault();
     const offset = 80;
-    window.scrollTo({ top: target.offsetTop - offset, behavior: "smooth" });
+    window.scrollTo({
+      top: target.offsetTop - offset,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
   });
 });
 
@@ -561,6 +615,8 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 (function initParallax() {
   const orbs = document.querySelectorAll(".hero-gradient-orb");
   if (!orbs.length) return;
+  // Skip parallax when user prefers reduced motion
+  if (prefersReducedMotion) return;
 
   // Scroll opacity fade
   window.addEventListener(
@@ -618,6 +674,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 ───────────────────────────────────────── */
 (function initCursorGlow() {
   if (window.innerWidth < 768) return;
+  if (prefersReducedMotion) return;
 
   const glow = document.createElement("div");
   glow.setAttribute("aria-hidden", "true");
@@ -649,6 +706,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 ───────────────────────────────────────── */
 (function initTilt() {
   if (window.innerWidth < 768) return;
+  if (prefersReducedMotion) return;
 
   const tiltCards = document.querySelectorAll(
     ".service-card, .team-card, .pricing-card, .industry-card",
@@ -691,6 +749,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
    14. PAGE LOAD POLISH
 ───────────────────────────────────────── */
 window.addEventListener("load", () => {
+  if (prefersReducedMotion) return;
   document.body.style.opacity = "0";
   document.body.style.transition = "opacity 0.6s ease";
   requestAnimationFrame(() => {

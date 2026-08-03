@@ -93,7 +93,7 @@ document.addEventListener("keydown", (e) => {
 
 // Active link highlighting (exclude CTA button)
 const sections = document.querySelectorAll("section[id]");
-const navItems = document.querySelectorAll(".nav-links li:not(:last-child) a");
+const navItems = document.querySelectorAll(".nav-links li a");
 
 window.addEventListener(
   "scroll",
